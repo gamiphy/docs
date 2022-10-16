@@ -1,0 +1,1762 @@
+{
+  "openapi": "3.0.0",
+  "x-stoplight": {
+    "id": "305bxxsdfzr2r"
+  },
+  "paths": {
+    "/health-check": {
+      "get": {
+        "operationId": "AppController_healthCheck",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/v2/games": {
+      "post": {
+        "operationId": "GamesController_create",
+        "summary": "Create Game",
+        "parameters": [
+          {
+            "name": "gamix-app-id",
+            "required": true,
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GameCreateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GameResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Games"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "GamesController_list",
+        "summary": "List Games",
+        "parameters": [
+          {
+            "name": "gamix-app-id",
+            "required": true,
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "enabled",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": 10,
+              "type": "number"
+            }
+          },
+          {
+            "name": "skip",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": 0,
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GamesResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Games"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/games/{id}": {
+      "get": {
+        "operationId": "GamesController_get",
+        "summary": "Get Game",
+        "parameters": [
+          {
+            "name": "gamix-app-id",
+            "required": true,
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GameResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Games"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "GamesController_update",
+        "summary": "Update Game",
+        "parameters": [
+          {
+            "name": "gamix-app-id",
+            "required": true,
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GameUpdateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GameResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Games"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "GamesController_delete",
+        "summary": "Delete Game",
+        "parameters": [
+          {
+            "name": "gamix-app-id",
+            "required": true,
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Games"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/sessions": {
+      "post": {
+        "operationId": "SessionsController_create",
+        "summary": "Create Session",
+        "description": "This API is called on the game enter, it will create a session that will be used to save the data for the current play",
+        "parameters": [
+          {
+            "name": "gamix-app-id",
+            "required": true,
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSessionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Sessions"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "SessionsController_list",
+        "summary": "List Sessions",
+        "parameters": [
+          {
+            "name": "gamix-app-id",
+            "required": true,
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "game",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "progress",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": 10,
+              "type": "number"
+            }
+          },
+          {
+            "name": "skip",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": 0,
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionPaginatedResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Sessions"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/sessions/export": {
+      "get": {
+        "operationId": "SessionsController_export",
+        "summary": "Get Sessions Report",
+        "parameters": [
+          {
+            "name": "gamix-app-id",
+            "required": true,
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "email",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "game",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Sessions"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/sessions/{id}": {
+      "get": {
+        "operationId": "SessionsController_get",
+        "summary": "Get Session",
+        "parameters": [
+          {
+            "name": "gamix-app-id",
+            "required": true,
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Sessions"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/sessions/{id}/chunk": {
+      "post": {
+        "operationId": "SessionsController_createChunk",
+        "summary": "Create Session Chunk",
+        "description": "This API should be called on the points/coins collection during the game. The data should be encrypted as following:\n            <br/><br/>\n          data = score + \"|\" + time (milliseconds)\n          <br/><br/>\n          chunk = aes-256-cbc(data, sessionKey, {\n            iv: sessionIV,\n            padding: Pkcs7\n            mode: CBC\n          })\n          <br/><br/>\n          all encoding is based on base64\n        ",
+        "parameters": [
+          {
+            "name": "gamix-app-id",
+            "required": true,
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChunkRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Sessions"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/sessions/{id}/start": {
+      "put": {
+        "operationId": "SessionsController_start",
+        "summary": "Start Session",
+        "description": "This API should be called on the game start, to mark the session as started",
+        "parameters": [
+          {
+            "name": "gamix-app-id",
+            "required": true,
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Sessions"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/sessions/{id}/finish": {
+      "put": {
+        "operationId": "SessionsController_finish",
+        "summary": "Finish Session",
+        "description": "This API should be called on the game finish, it'll calculate the play score and update the user points accordingly",
+        "parameters": [
+          {
+            "name": "gamix-app-id",
+            "required": true,
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FinishSessionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Sessions"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/user-games/games/{gameId}/users/{userId}": {
+      "get": {
+        "operationId": "UserGamesController_getByGameAndUser",
+        "summary": "Get User Game By Game and User",
+        "parameters": [
+          {
+            "name": "gamix-app-id",
+            "required": true,
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gameId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserGameResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User Games"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/user-games/games/{gameId}": {
+      "get": {
+        "operationId": "UserGamesController_getByGame",
+        "summary": "Get User Game By Game",
+        "parameters": [
+          {
+            "name": "gamix-app-id",
+            "required": true,
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gameId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserGameResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User Games"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/user-games/export": {
+      "get": {
+        "operationId": "UserGamesController_export",
+        "summary": "Get Users Games Report",
+        "parameters": [
+          {
+            "name": "gamix-app-id",
+            "required": true,
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "email",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "game",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User Games"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/user-games/{id}": {
+      "get": {
+        "operationId": "UserGamesController_get",
+        "summary": "Get User Game",
+        "parameters": [
+          {
+            "name": "gamix-app-id",
+            "required": true,
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserGameResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User Games"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/user-games": {
+      "get": {
+        "operationId": "UserGamesController_list",
+        "summary": "List User Games",
+        "parameters": [
+          {
+            "name": "gamix-app-id",
+            "required": true,
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": 10,
+              "type": "number"
+            }
+          },
+          {
+            "name": "skip",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": 0,
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserGamesResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User Games"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/user-games/games/{gameId}/leaderboard": {
+      "get": {
+        "operationId": "UserGamesController_getLeaderboard",
+        "summary": "Get Leaderboard",
+        "parameters": [
+          {
+            "name": "gamix-app-id",
+            "required": true,
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": 10,
+              "type": "number"
+            }
+          },
+          {
+            "name": "skip",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": 0,
+              "type": "number"
+            }
+          },
+          {
+            "name": "gameId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserGamesResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User Games"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/user-games/games/{gameId}/users/{userId}/leaderboard": {
+      "get": {
+        "operationId": "UserGamesController_getUserLeaderboard",
+        "summary": "Get User related Leaderboard",
+        "parameters": [
+          {
+            "name": "gamix-app-id",
+            "required": true,
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "top",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": 3,
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": 5,
+              "type": "number"
+            }
+          },
+          {
+            "name": "gameId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserGamesLeaderboardResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User Games"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/sessions/beeline": {
+      "post": {
+        "operationId": "BeelineController_create",
+        "summary": "Create Beeline Session",
+        "parameters": [
+          {
+            "name": "gamix-app-id",
+            "required": true,
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BeelineCreateSessionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Beeline"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/sessions/beeline/{sessionId}": {
+      "get": {
+        "operationId": "BeelineController_get",
+        "summary": "Get session",
+        "parameters": [
+          {
+            "name": "gamix-app-id",
+            "required": true,
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sessionId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Beeline"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/sessions/beeline/{sessionId}/verify": {
+      "put": {
+        "operationId": "BeelineController_verify",
+        "summary": "Verify mobile number",
+        "parameters": [
+          {
+            "name": "gamix-app-id",
+            "required": true,
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sessionId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Beeline"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/sessions/beeline/{sessionId}/product-code": {
+      "get": {
+        "operationId": "BeelineController_getActiveProductCodes",
+        "summary": "Get Active Product Codes",
+        "parameters": [
+          {
+            "name": "gamix-app-id",
+            "required": true,
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sessionId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Beeline"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "x-extension-1": null,
+        "x-internal": false
+      }
+    },
+    "/v2/sessions/beeline/{sessionId}/activate": {
+      "put": {
+        "operationId": "BeelineController_activate",
+        "summary": "Activate Session",
+        "parameters": [
+          {
+            "name": "gamix-app-id",
+            "required": true,
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sessionId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActivateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Beeline"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/sessions/beeline/{sessionId}/start": {
+      "put": {
+        "operationId": "BeelineController_start",
+        "summary": "Start Game Session",
+        "parameters": [
+          {
+            "name": "gamix-app-id",
+            "required": true,
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sessionId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Beeline"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/sessions/beeline/{sessionId}/retry": {
+      "put": {
+        "operationId": "BeelineController_retry",
+        "summary": "Increase the retires",
+        "parameters": [
+          {
+            "name": "gamix-app-id",
+            "required": true,
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sessionId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Beeline"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/sessions/beeline/{sessionId}/finish": {
+      "put": {
+        "operationId": "BeelineController_finish",
+        "summary": "Finish the session",
+        "parameters": [
+          {
+            "name": "gamix-app-id",
+            "required": true,
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sessionId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Beeline"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "",
+    "description": "",
+    "version": "1.0.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [
+    {
+      "url": "https://api.dev.gamiphy.co",
+      "description": "default"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearer": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http"
+      }
+    },
+    "schemas": {
+      "PointsRequest": {
+        "type": "object",
+        "properties": {
+          "gems": {
+            "type": "number"
+          },
+          "exp": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "gems",
+          "exp"
+        ]
+      },
+      "StepsRequest": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "number"
+          },
+          "size": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "count",
+          "size"
+        ]
+      },
+      "NumberRangeRequest": {
+        "type": "object",
+        "properties": {
+          "max": {
+            "type": "number"
+          },
+          "min": {
+            "type": "number"
+          }
+        }
+      },
+      "DateRangeRequest": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "to": {
+            "format": "date-time",
+            "type": "string"
+          }
+        }
+      },
+      "ConstraintsRequest": {
+        "type": "object",
+        "properties": {
+          "step": {
+            "$ref": "#/components/schemas/NumberRangeRequest"
+          },
+          "overall": {
+            "$ref": "#/components/schemas/NumberRangeRequest"
+          },
+          "score": {
+            "$ref": "#/components/schemas/NumberRangeRequest"
+          },
+          "availability": {
+            "$ref": "#/components/schemas/DateRangeRequest"
+          }
+        }
+      },
+      "GameCreateRequest": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "object"
+          },
+          "description": {
+            "type": "object"
+          },
+          "image": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "game3d",
+              "game2d"
+            ]
+          },
+          "genres": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "survival",
+                "action",
+                "adventure"
+              ]
+            }
+          },
+          "url": {
+            "type": "string"
+          },
+          "points": {
+            "$ref": "#/components/schemas/PointsRequest"
+          },
+          "steps": {
+            "$ref": "#/components/schemas/StepsRequest"
+          },
+          "constraints": {
+            "$ref": "#/components/schemas/ConstraintsRequest"
+          },
+          "ratio": {
+            "type": "number"
+          },
+          "cta": {
+            "type": "string"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "metadata": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "title",
+          "points",
+          "steps",
+          "ratio"
+        ]
+      },
+      "GameResponse": {
+        "type": "object",
+        "properties": {
+          "game": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "game"
+        ]
+      },
+      "GamesResponse": {
+        "type": "object",
+        "properties": {
+          "games": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        },
+        "required": [
+          "games"
+        ]
+      },
+      "GameUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "object"
+          },
+          "description": {
+            "type": "object"
+          },
+          "image": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "game3d",
+              "game2d"
+            ]
+          },
+          "genres": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "survival",
+                "action",
+                "adventure"
+              ]
+            }
+          },
+          "url": {
+            "type": "string"
+          },
+          "points": {
+            "$ref": "#/components/schemas/PointsRequest"
+          },
+          "steps": {
+            "$ref": "#/components/schemas/StepsRequest"
+          },
+          "constraints": {
+            "$ref": "#/components/schemas/ConstraintsRequest"
+          },
+          "ratio": {
+            "type": "number"
+          },
+          "cta": {
+            "type": "string"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "metadata": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "CreateSessionRequest": {
+        "type": "object",
+        "properties": {
+          "game": {
+            "type": "string"
+          },
+          "user": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "object"
+          },
+          "additionalData": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "game"
+        ]
+      },
+      "SessionResponse": {
+        "type": "object",
+        "properties": {
+          "session": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "session"
+        ]
+      },
+      "SessionPaginatedResponse": {
+        "type": "object",
+        "properties": {
+          "sessions": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "count": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "sessions",
+          "count"
+        ]
+      },
+      "ChunkRequest": {
+        "type": "object",
+        "properties": {
+          "chunk": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "chunk"
+        ]
+      },
+      "UserRequest": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "gender": {
+            "type": "string",
+            "enum": [
+              "male",
+              "female",
+              "prefer not to say"
+            ]
+          },
+          "metadata": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "email"
+        ]
+      },
+      "FinishSessionRequest": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/UserRequest"
+          },
+          "length": {
+            "type": "number"
+          }
+        }
+      },
+      "UserGameResponse": {
+        "type": "object",
+        "properties": {
+          "userGame": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "userGame"
+        ]
+      },
+      "UserGamesResponse": {
+        "type": "object",
+        "properties": {
+          "userGames": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        },
+        "required": [
+          "userGames"
+        ]
+      },
+      "UserGamesLeaderboardResponse": {
+        "type": "object",
+        "properties": {
+          "top": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        },
+        "required": [
+          "top",
+          "data"
+        ]
+      },
+      "BeelineCreateSessionRequest": {
+        "type": "object",
+        "properties": {
+          "game": {
+            "type": "string"
+          },
+          "identifier": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "game",
+          "identifier"
+        ]
+      },
+      "VerifyRequest": {
+        "type": "object",
+        "properties": {
+          "verificationCode": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "verificationCode"
+        ]
+      },
+      "ActivateRequest": {
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string",
+            "enum": [
+              "VRGAME",
+              "VRGAME3",
+              "VRGAME5",
+              "VRGAMEWEEK",
+              "VRGAMEMONTH"
+            ]
+          }
+        },
+        "required": [
+          "productCode"
+        ]
+      }
+    }
+  }
+}
